@@ -1,0 +1,112 @@
+/* Container chính */
+.cart-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+  
+  /* Tiêu đề giỏ hàng */
+  .cart-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Card chứa danh sách giỏ hàng */
+  .cart-card {
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #fff;
+  }
+  
+  /* Mỗi item trong giỏ hàng */
+  .cart-item {
+    border-bottom: 1px solid #f0f0f0;
+    padding: 15px 0;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cart-item:hover {
+    background-color: #fafafa;
+  }
+  
+  /* Ảnh sản phẩm */
+  .cart-item-image-wrapper {
+    text-align: center;
+  }
+  
+  .cart-item-image {
+    width: 100%;
+    max-width: 80px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+  
+  /* Thông tin sản phẩm */
+  .cart-item-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .cart-item-price {
+    color: #e67e22;
+    font-weight: bold;
+  }
+  
+  /* Số lượng và nút xóa */
+  .cart-item-quantity {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .cart-item-action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Card tổng tiền & thanh toán */
+  .cart-summary-card {
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background-color: #f8f8f8;
+  }
+  
+  .cart-total {
+    color: #e67e22;
+    font-weight: bold;
+  }
+  
+  /* Nút thanh toán */
+  .cart-checkout-button {
+    background-color: #e67e22;
+    border-color: #e67e22;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  
+  .cart-checkout-button:hover {
+    background-color: #d65f1a;
+    border-color: #d65f1a;
+  }
+  
+  /* Responsive */
+  @media (max-width: 576px) {
+    .cart-item {
+      padding: 10px 0;
+    }
+  
+    .cart-item-image {
+      max-width: 60px;
+    }
+  
+    .cart-item-info {
+      font-size: 14px;
+    }
+  }
+  

@@ -1,0 +1,102 @@
+/* -------------------------
+   RESET/CHUNG
+-------------------------- */
+.footer {
+    background-color: #f8f9fa;
+    color: #333;
+    padding: 20px 30px;
+    font-family: sans-serif;
+    width: 100%;
+  }
+  
+  /* -------------------------
+     PHẦN TRÊN (BA CỘT)
+  -------------------------- */
+  .footer__top {
+    display: flex;
+    flex-wrap: wrap; /* Cho phép xuống hàng khi màn hình nhỏ */
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .footer__column {
+    flex: 1;            /* Mỗi cột chiếm 1 phần */
+    min-width: 200px;   /* Đảm bảo cột không quá hẹp */
+    margin: 10px;
+  }
+  
+  .footer__column h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #000; /* Tùy chọn */
+  }
+  
+  .footer__column p {
+    margin: 0 0 5px;
+  }
+  
+  .footer__column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer__column ul li {
+    margin: 5px 0;
+  }
+  
+  .footer__column ul li a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s;
+  }
+  
+  .footer__column ul li a:hover {
+    color: #007bff; /* Hiệu ứng hover */
+  }
+  
+  /* -------------------------
+     MẠNG XÃ HỘI
+  -------------------------- */
+  .social-icons {
+    display: flex;
+    flex-direction: column; /* Mỗi icon xuống 1 dòng, bạn có thể đổi thành row */
+    gap: 5px;
+  }
+  
+  .social-icon {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s;
+  }
+  
+  .social-icon:hover {
+    color: #007bff;
+  }
+  
+  /* -------------------------
+     PHẦN DƯỚI (BẢN QUYỀN)
+  -------------------------- */
+  .footer__bottom {
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  /* -------------------------
+     RESPONSIVE CHO MÀN HÌNH NHỎ
+  -------------------------- */
+  @media (max-width: 768px) {
+    .footer__top {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .footer__column {
+      width: 100%;
+      margin: 10px 0;
+    }
+  }
+  

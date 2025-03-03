@@ -1,0 +1,102 @@
+.product-card {
+  border: none;
+  border-radius: 12px; 
+  overflow: hidden;
+  transition: all 0.4s ease; /* Transition mượt hơn */
+  background: linear-gradient(145deg, #ffffff, #f8f9fa);
+  height: 350px; 
+  width: 270px ;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+  position: relative; 
+}
+
+.product-card:hover {
+  transform: translateY(-8px) scale(1.02); /* Hover phóng to nhẹ + nâng lên */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15); /* Shadow đậm hơn khi hover */
+}
+
+/* Container hình ảnh */
+.product-card__image-container {
+  height: 220px; 
+  overflow: hidden;
+  position: relative;
+}
+
+.product-card__image {
+  width: 100%;
+  height: 100%; 
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-card__image {
+  transform: scale(1.1);
+}
+
+/* Container nội dung */
+.product-card__content {
+  height: 130px; /* Chiếm 3 phần như yêu cầu */
+  padding: 12px 16px; /* Giảm padding cho cân đối */
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.9); /* Nền mờ nhẹ cho nội dung */
+  transition: background 0.3s ease;
+}
+
+.product-card:hover .product-card__content {
+  background: rgba(255, 255, 255, 1); /* Nền trắng hơn khi hover */
+}
+
+/* Meta (Tên sản phẩm) */
+.ant-card-meta {
+  margin: 0;
+}
+
+.ant-card-meta-title {
+  font-size: 1.4rem !important; /* Tên to hơn tí */
+  font-weight: 700 !important; /* Đậm hơn */
+  color: #2c3e50; /* Màu xanh đậm sang trọng */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Cắt gọn nếu tên dài */
+  transition: color 0.3s ease;
+}
+
+.product-card:hover .ant-card-meta-title {
+  color: #e74c3c; /* Đổi màu khi hover, đỏ nổi bật */
+}
+
+/* Giá */
+.product-card__price {
+  margin: 0;
+  margin-top: 10px;
+  font-size: 1.1rem;
+  font-weight: 700; /* Đậm để nhấn mạnh giá */
+  color: #27ae60; /* Xanh lá nổi bật, vibe tiền */
+  line-height: 1.2;
+  transition: color 0.3s ease;
+  padding: 0;
+}
+
+.product-card:hover .product-card__price {
+  color: #219653; /* Xanh đậm hơn khi hover */
+}
+
+/* Thêm hiệu ứng viền sáng */
+.product-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background: linear-gradient(45deg, rgba(231, 76, 60, 0.2), rgba(39, 174, 96, 0.2));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none; 
+}
+
+.product-card:hover::before {
+  opacity: 1;
+}

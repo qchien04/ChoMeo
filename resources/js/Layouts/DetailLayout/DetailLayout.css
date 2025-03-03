@@ -1,0 +1,12 @@
+.detail-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Căn giữa theo chiều ngang */
+    justify-content: center;
+    width: 100%;
+}
+
+.detail-layout .content {
+    width: 100%;
+    max-width: 1600px; /* Tránh bị quá rộng trên màn hình lớn */
+}

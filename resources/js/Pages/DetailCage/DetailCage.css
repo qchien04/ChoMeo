@@ -1,0 +1,136 @@
+/* Định dạng font và background tổng thể */
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.cage-detail-container {
+  max-width: 1200px;
+  width: 1200px;
+  margin: 0 auto;
+  padding: 30px;
+  background: #f2f2f2;
+}
+
+/* Style chung cho Card: cage-top-card, cage-suggest-card, cage-evaluation-card */
+.cage-top-card,
+.cage-suggest-card,
+.cage-evaluation-card {
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+/* Padding cho phần nội dung Card */
+.cage-top-card .ant-card-body,
+.cage-suggest-card .ant-card-body,
+.cage-evaluation-card .ant-card-body {
+  padding: 30px;
+}
+
+/* Hình ảnh lồng */
+.cage-image-wrapper {
+  overflow: hidden;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+.cage-image {
+  width: 100%;
+  height: 300px;           /* Chiều cao cố định giúp tránh layout bị thay đổi */
+  object-fit: cover;       /* Giữ tỉ lệ và cắt bớt phần thừa nếu cần */
+  display: block;
+  transition: transform 0.3s ease;
+}
+.cage-image-wrapper:hover .cage-image {
+  transform: scale(1.1);
+}
+
+/* Thông tin lồng */
+.cage-info-wrapper {
+  padding: 10px;
+}
+.cage-name {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  color: #333;
+  font-weight: bold;
+}
+.cage-description p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #555;
+  margin-top: 20px;
+}
+
+/* Định dạng cho Descriptions (dùng chung với Ant Design) */
+.ant-descriptions-item-label {
+  background-color: #e9ecef;
+  font-weight: 600;
+  padding: 10px;
+}
+.ant-descriptions-item-content {
+  background-color: #fff;
+  padding: 10px;
+}
+
+/* Giá lồng */
+.cage-price {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #e53935;
+}
+
+/* Danh sách gợi ý lồng */
+.cage-suggest-list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.suggest-item {
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  width: calc(33% - 20px);
+  max-width: 300px;
+}
+.suggest-item img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+.suggest-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+.suggest-item p {
+  padding: 10px;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+/* Responsive cho danh sách gợi ý */
+@media (max-width: 992px) {
+  .suggest-item {
+    width: calc(50% - 20px);
+  }
+}
+@media (max-width: 576px) {
+  .suggest-item {
+    width: 100%;
+  }
+}
+
+/* Căn chỉnh các phần tử trong hàng của cage-top-card */
+.cage-top-card .ant-row {
+  align-items: center;
+}
+
+/* Định dạng cho phần đánh giá & bình luận */
+.evaluation-section {
+  margin-top: 20px;
+}

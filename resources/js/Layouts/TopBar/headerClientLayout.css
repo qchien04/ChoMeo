@@ -1,0 +1,147 @@
+/* =========================
+   RESET CƠ BẢN CHO HEADER
+   ========================= */
+   .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Logo bên trái, account bên phải */
+    background-color: #fff;
+    padding: 10px 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+  }
+
+  .nonSticky{
+    position: relative;
+  }
+  
+  /* Logo bên trái */
+  .header__left img {
+    height: 50px;
+    width: auto;
+  }
+  
+  /* Khu vực giữa: Search + Menu */
+  .header__center {
+    display: flex;
+    flex-direction: column; /* Cho form search trên, menu dưới */
+    align-items: center;
+    justify-content: center;
+    flex: 1; /* Giúp phần này "co giãn" chiếm khoảng trống ở giữa */
+    margin: 0 20px; /* Tạo khoảng cách hai bên */
+  }
+  
+  /* Form Search */
+  .header__search-form {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px; /* Khoảng cách phía dưới form */
+    gap: 0;
+  }
+
+  .header__search-input{
+    margin-right: 0px !important;
+  }
+  
+  .header__search-input .ant-input {
+    border-radius: 20px 0 0 20px;
+    border-right: none;
+    height: 40px;
+    width: 420px; /* Tùy ý, bạn có thể tăng giảm */
+  }
+  
+  /* Nút search */
+  .header__search-btn .ant-btn {
+    border-radius: 0 20px 20px 0;
+    height: 40px;
+    background-color: #007bff;
+    border-color: #007bff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  
+  .header__search-btn .ant-btn:hover,
+  .header__search-btn .ant-btn:focus {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+  
+  /* Menu điều hướng */
+  .header__nav-bottom {
+    display: flex;
+    gap: 20px; /* Khoảng cách giữa các dropdown */
+  }
+  
+  /* Style chung cho dropdown menu */
+  .menu {
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.3s, background-color 0.3s;
+    padding: 5px 10px;
+    border-radius: 4px;
+  }
+  
+  .menu:hover {
+    background-color: #f5f5f5;
+    color: #007bff;
+  }
+  
+  /* Khu vực tài khoản bên phải */
+  .header__right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .header__account-link {
+    font-size: 16px;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .header__account-link:hover {
+    color: #007bff;
+  }
+  
+  /* =========================
+     RESPONSIVE
+     ========================= */
+
+/*     
+  @media (max-width: 768px) {
+    .header {
+      flex-wrap: wrap;  
+      padding: 10px 20px;
+    }
+  
+    .header__left,
+    .header__right {
+      margin-bottom: 10px;
+    }
+  
+    .header__center {
+      width: 100%;
+      margin: 0;
+    }
+  
+    .header__search-input .ant-input {
+      width: 180px; 
+    }
+  
+    .header__nav-bottom {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+  
+  */

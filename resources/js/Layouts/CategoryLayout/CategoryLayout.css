@@ -1,0 +1,55 @@
+.category-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    width: 100%;
+    background-color: #1890ff;
+    z-index: 20000;
+}
+
+.content {
+    width: 100%;
+    max-width: 1600px;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+
+.category-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: #f8f9fa;
+  }
+  
+  .content {
+    display: flex;
+    max-width: 1600px;
+    display: flex;
+  }
+  
+
+  
+  .category-filter {
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-right: 40px;
+    position: sticky;
+    top:110px;
+  }
+  
+  .category-filter .ant-form-item-label > label {
+    font-weight: 600;
+    margin: 5px;
+  }
+  
+  .category-filter .ant-btn-primary {
+    background-color: #1890ff;
+    border-color: #1890ff;
+  }
+  

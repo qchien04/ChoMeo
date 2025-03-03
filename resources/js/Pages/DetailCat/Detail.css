@@ -1,0 +1,164 @@
+Dog/* Detail.css */
+
+/* Định dạng font và background tổng thể */
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.cat-detail-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px;
+  background: #f2f2f2;
+  width: 1200px;
+}
+
+/* Style chung cho Card */
+.cat-info-card,
+.cat-suggest-card,
+.cat-review-card {
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+/* Padding cho phần nội dung Card */
+.cat-info-card .ant-card-body,
+.cat-suggest-card .ant-card-body,
+.cat-review-card .ant-card-body {
+  padding: 30px;
+}
+
+/* Ảnh chó */
+.cat-image-wrapper {
+  overflow: hidden;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+.cat-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.cat-image-wrapper:hover .cat-image {
+  transform: scale(1.1);
+}
+
+/* Thông tin chó */
+.cat-info-wrapper {
+  padding: 10px;
+}
+.cat-name {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  color: #333;
+  font-weight: bold;
+}
+.cat-descriptions .ant-descriptions-item-label {
+  background-color: #e9ecef;
+  font-weight: 600;
+  padding: 10px;
+}
+.cat-descriptions .ant-descriptions-item-content {
+  background-color: #fff;
+  padding: 10px;
+}
+.cat-price {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #e53935;
+}
+.cat-description p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #555;
+  margin-top: 20px;
+}
+
+/* Section header */
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #444;
+  text-align: center;
+}
+
+/* Gợi ý chó khác */
+.cat-suggest-list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.suggest-item {
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  width: calc(33% - 20px);
+  max-width: 300px;
+}
+.suggest-item img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+.suggest-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+.suggest-item p {
+  padding: 10px;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+/* Đánh giá & Bình luận */
+.review-content p {
+  font-size: 1.1rem;
+  color: #666;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .suggest-item {
+    width: calc(50% - 20px);
+  }
+}
+@media (max-width: 576px) {
+  .suggest-item {
+    width: 100%;
+  }
+}
+/* Thêm dòng này vào file Detail.css */
+.cat-top-card .ant-row {
+  align-items: center;
+}
+
+.evaluation-section {
+  margin-top: 20px;
+}
+
+.evaluation-section textarea {
+  width: 100%;
+  resize: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+}
+
+.evaluation-section button {
+  display: block;
+  width: 100%;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  padding: 10px;
+  text-align: center;
+}

@@ -1,0 +1,59 @@
+/* Container sidebar */
+.menu-sider {
+  width: 250px;
+  height: 100vh;
+  background: linear-gradient(180deg, #ffffff 0%, #f7f9fc 100%);
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header của sidebar */
+.menu-sider-header {
+  padding: 20px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e8e8e8;
+  text-align: center;
+}
+
+.menu-sider-header h2 {
+  margin: 0;
+  font-size: 1.6rem;
+  color: #1890ff;
+}
+
+/* Tùy chỉnh giao diện cho menu antd */
+.ant-menu-light.ant-menu-inline {
+  background: transparent;
+  border-right: none;
+}
+
+/* Style cho các liên kết menu */
+.menu-link {
+  color: #595959;
+  transition: color 0.3s ease;
+}
+
+.menu-link:hover {
+  color: #1890ff;
+}
+
+/* Cải tiến hover và active cho menu item */
+.ant-menu-item,
+.ant-menu-submenu-title {
+  padding: 10px 20px !important;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.ant-menu-item:hover,
+.ant-menu-submenu-title:hover {
+  background-color: rgba(24, 144, 255, 0.1);
+}
+
+/* Active menu item */
+.ant-menu-item-selected {
+  background-color: rgba(24, 144, 255, 0.2) !important;
+  border-radius: 4px;
+}

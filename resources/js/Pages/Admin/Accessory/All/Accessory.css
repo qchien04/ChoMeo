@@ -1,0 +1,81 @@
+/* Tổng thể bảng */
+.accessory-table-container {
+    padding: 24px;
+    background: #fff;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .accessory-table-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 24px;
+    color: #333;
+  }
+  
+  /* Tiêu đề bảng */
+  .accessory-table .ant-table-thead > tr > th {
+    background-color: #f5f5f5 !important;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  /* Căn giữa nội dung bảng */
+  .accessory-table .ant-table-tbody > tr > td {
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  /* Hình ảnh */
+  .accessory-image {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+    transition: transform 0.3s ease;
+  }
+  
+  .accessory-image:hover {
+    transform: scale(1.1);
+    border-color: #1890ff;
+  }
+  
+  /* Giá tiền */
+  .price {
+    font-weight: bold;
+    color: #e67e22;
+  }
+  
+  /* Hành động */
+  .action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  /* Nút chỉnh sửa */
+  .edit-button {
+    background: #1890ff;
+    color: white;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+  }
+  
+  .edit-button:hover {
+    background: #0073e6;
+  }
+  
+  /* Nút xóa */
+  .delete-button {
+    border-radius: 5px;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  
+  .delete-button:hover {
+    background: #ff4d4f;
+    color: white;
+  }
+  
