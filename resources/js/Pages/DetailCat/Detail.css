@@ -162,3 +162,28 @@ body {
   padding: 10px;
   text-align: center;
 }
+
+
+.cat-suggest-card {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.cat-suggest-card h2 {
+  margin-bottom: 16px;
+  text-align: center;
+  font-size: 20px;
+  color: #333;
+}
+
+.cat-suggest-list {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+
+
+

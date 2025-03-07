@@ -18,8 +18,9 @@ import "./DetailCage.css";
 import { PageProps } from "@/types";
 import { Cage } from "../CageCategory";
 import { router } from "@inertiajs/react";
+import CACard from "@/Components/CACard";
 
-export default function CageDetail({ cage, comments: initialComments }: PageProps<{ cage: Cage, comments: any[] }>) {
+export default function CageDetail({ cage, comments: initialComments,suggested }: PageProps<{ cage: Cage, comments: any[] ,suggested:Cage[]}>) {
   const [comments, setComments] = useState(initialComments || []);
   const [newComment, setNewComment] = useState("");
   const [newRating, setNewRating] = useState(0);
@@ -127,22 +128,12 @@ export default function CageDetail({ cage, comments: initialComments }: PageProp
           </Row>
         </Card>
 
-        {/* Phần giữa: Gợi ý lồng/chỗ ở khác */}
         <Card className="cage-suggest-card">
-          <h3>Các gợi ý lồng khác</h3>
+          <h2>Các gợi ý khác</h2>
           <div className="cage-suggest-list">
-            <div className="suggest-item">
-              <img src="https://source.unsplash.com/200x150/?cage" alt="Lồng 1" />
-              <p>Lồng 1</p>
-            </div>
-            <div className="suggest-item">
-              <img src="https://source.unsplash.com/200x150/?pet-cage" alt="Lồng 2" />
-              <p>Lồng 2</p>
-            </div>
-            <div className="suggest-item">
-              <img src="https://source.unsplash.com/200x150/?animal-cage" alt="Lồng 3" />
-              <p>Lồng 3</p>
-            </div>
+          <CACard typeItem="long" item={suggested[0]} key={suggested[0].id}></CACard>
+          <CACard typeItem="long" item={suggested[1]} key={suggested[1].id}></CACard>
+          <CACard typeItem="long" item={suggested[2]} key={suggested[2].id}></CACard>
           </div>
         </Card>
 

@@ -1,9 +1,9 @@
-import CageCardItem from "@/Components/CageCardItem";
 import "./Cage.css";
 import CategoryLayout from '@/Layouts/CategoryLayout';
 import { PageProps } from "@/types";
 import { Col, Row, Pagination } from "antd";
 import { useState } from "react";
+import CACard from "@/Components/CACard";
 
 export interface Cage {
   id: number;
@@ -38,7 +38,7 @@ export default function CageCategoryDogCategory({ cageList }: PageProps<{ cageLi
           {currentCages.length > 0 ? (
             currentCages.map((cage) => (
               <Col span={6} key={cage.id}>
-                <CageCardItem item={cage} />
+                <CACard item={cage} typeItem="long"/>
               </Col>
             ))
           ) : (

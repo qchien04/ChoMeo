@@ -22,4 +22,39 @@ class HomeController extends Controller
                                                 'cats' => $cats,
                                                 'accessories' => $accessories]);
     }
+
+    public function search(Request $request) {
+        $key = $request->input('key'); // Lấy từ khóa tìm kiếm
+
+        if (!$key) {
+            return Inertia::render('Search/index', [
+                'cats' => [], 'dogs' => [], 'cages' => [], 'accessories' => [], 'key' => $key
+            ]);
+        }
+
+        $cats = Cat::where('name', 'like', "%{$key}%")
+                ->orWhere('description', 'like', "%{$key}%")
+                ->get();
+
+        $dogs = Dog::where('name', 'like', "%{$key}%")
+                ->orWhere('description', 'like', "%{$key}%")
+                ->get();
+
+        $cages = Cage::where('name', 'like', "%{$key}%")
+                    ->orWhere('description', 'like', "%{$key}%")
+                    ->get();
+
+        $accessories = Accessory::where('name', 'like', "%{$key}%")
+                                ->orWhere('description', 'like', "%{$key}%")
+                                ->get();
+
+        return Inertia::render('Search/index', [
+            'cats' => $cats,
+            'dogs' => $dogs,
+            'cages' => $cages,
+            'accessories' => $accessories,
+            'key' => $key
+        ]);
+    }
+
 }  

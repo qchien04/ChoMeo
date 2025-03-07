@@ -54,7 +54,14 @@ class DogController extends Controller
 
 
     public function showClient(Request $request,Dog $dog){
-        return Inertia::render('DetailDog/index',['dog' => $dog]);
+        $suggestedDogs = Dog::where('id', '!=', $dog->id)
+                            ->inRandomOrder()
+                            ->take(3)
+                            ->get();
+        return Inertia::render('DetailDog/index',[
+            'dog' => $dog,
+            'suggested' => $suggestedDogs,
+        ]);;
     }
     public function adminAllView(Request $request)
     {

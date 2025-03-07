@@ -24,7 +24,7 @@ use Inertia\Inertia;
 
 Route::get('/', [HomeController::class, 'show'])->name('home');
 
-
+Route::get('/search', [HomeController::class, 'search'])->name('search');
 
 
 
@@ -34,6 +34,8 @@ Route::post('/gio-hang/add', [CartController::class, 'store'])->middleware('auth
 Route::get('/gio-hang', [CartController::class, 'show'])->middleware('auth')->name('carts.get');
 Route::delete('/gio-hang/delete/{cart}', [CartController::class, 'destroy'])->middleware('auth');
 Route::post('/vnpay_payment', [PaymentController::class, 'vnpay_payment'])->middleware('auth');
+
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

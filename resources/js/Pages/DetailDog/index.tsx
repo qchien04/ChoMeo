@@ -4,8 +4,9 @@ import DetailLayout from "@/Layouts/DetailLayout";
 import "./Detail.css";
 import { PageProps } from "@/types";
 import { Dog } from "../DogCategory";
+import CardItem from "@/Components/CardItem";
 
-export default function Detail({ dog }: PageProps<{ dog: Dog }>) {
+export default function Detail({ dog,suggested }: PageProps<{ dog: Dog,suggested:Dog[] }>) {
   const [comment, setComment] = useState("");
 
   const handleCommentSubmit = () => {
@@ -80,31 +81,15 @@ export default function Detail({ dog }: PageProps<{ dog: Dog }>) {
           </Row>
         </Card>
 
-        {/* Phần giữa: Gợi ý chó khác */}
         <Card className="dog-suggest-card">
-          <h3>Các gợi ý chó khác</h3>
+          <h2>Các gợi ý khác</h2>
           <div className="dog-suggest-list">
-            <div className="suggest-item">
-              <img src="https://source.unsplash.com/200x150/?dog" alt="Chó 1" />
-              <p>Chó 1</p>
-            </div>
-            <div className="suggest-item">
-              <img src="https://source.unsplash.com/200x150/?puppy" alt="Chó 2" />
-              <p>Chó 2</p>
-            </div>
-            <div className="suggest-item">
-              <img src="https://source.unsplash.com/200x150/?canine" alt="Chó 3" />
-              <p>Chó 3</p>
-            </div>
+          <CardItem category="cho" item={suggested[0]} key={suggested[0].id}></CardItem>
+          <CardItem category="cho" item={suggested[1]} key={suggested[1].id}></CardItem>
+          <CardItem category="cho" item={suggested[2]} key={suggested[2].id}></CardItem>
           </div>
         </Card>
 
-        {/* <Card className="dog-evaluation-card">
-          <h3>Đánh giá và Bình luận</h3>
-          <div className="evaluation-section">
-            <p>Chưa có đánh giá nào. Hãy là người đầu tiên đánh giá!</p>
-          </div>
-        </Card> */}
 
 
 

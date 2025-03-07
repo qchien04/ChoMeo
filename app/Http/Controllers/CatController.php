@@ -77,8 +77,16 @@ class CatController extends Controller
         return Inertia::render('Admin/Cat/All/index', ['cats' => $cats]);
     }
 
-    public function showClient(Request $request,Cat $cat){
-        return Inertia::render('DetailCat/index',['cat' => $cat]);
+    public function showClient(Request $request, Cat $cat) {
+        $suggestedCats = Cat::where('id', '!=', $cat->id)
+                            ->inRandomOrder()
+                            ->take(3)
+                            ->get();
+    
+        return Inertia::render('DetailCat/index', [
+            'cat' => $cat,
+            'suggested' => $suggestedCats,
+        ]);
     }
     
     public function create() 

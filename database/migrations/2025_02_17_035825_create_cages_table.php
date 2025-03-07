@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->integer('capacity')->default(10)->comment('Sức chứa tối đa');
             $table->integer('quantity')->default(1)->comment('Còn lại');
             $table->enum('breed', ['Chó', 'Mèo'])->comment('Chuồng dành cho chó hoặc mèo');
-            $table->decimal('price', 10, 2)->comment('Giá thuê hoặc mua chuồng');
+            $table->integer('price')->comment('Giá thuê hoặc mua chuồng');
             $table->text('description')->nullable()->comment('Mô tả chi tiết về chuồng');
             $table->string('parameter')->nullable()->comment('Thông số kỹ thuật, ví dụ: kích thước, vật liệu');
             $table->float('evaluate', 2, 1)->default(0)->comment('Điểm đánh giá trung bình');

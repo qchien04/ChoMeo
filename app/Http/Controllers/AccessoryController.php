@@ -142,10 +142,16 @@ class AccessoryController extends Controller
 
     
     public function showClient(Request $request,Accessory $accessory){
+        $suggestedAcessories = Accessory::where('id', '!=', $accessory->id)
+                            ->inRandomOrder()
+                            ->take(3)
+                            ->get();
         return Inertia::render('DetailAccessory/index',['accessory' => $accessory,
-                                                                            'comments' => $accessory->comments()->with('user:id,name')->get()
+                                                                            'comments' => $accessory->comments()->with('user:id,name')->get(),
+                                                                            'suggested' => $suggestedAcessories,
                                                                         ]);
     }
+
     public function destroy(Accessory $accessory)
     {
         $accessory->delete();

@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->unsignedInteger('age');
             $table->float('weight', 8, 2);
             $table->string('color')->nullable();
-            $table->decimal('price', 8, 2);
+            $table->integer('price');
             $table->text('description')->nullable();
             $table->string('image')->nullable();
             $table->boolean('vaccinated')->default(false);

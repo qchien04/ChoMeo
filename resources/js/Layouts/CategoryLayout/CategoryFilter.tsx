@@ -16,9 +16,8 @@ const CategoryFilter = ({ filters }: { filters: any }) => {
   
     const queryString = new URLSearchParams(filteredValues).toString();
     console.log("Query string:", queryString);
-    get(`/cho?${queryString}`);
+    get(`${window.location.pathname}?${queryString}`);
   };
-  
 
   return (
     <div className="category-filter">

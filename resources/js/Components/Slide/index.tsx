@@ -6,9 +6,8 @@ import { Dog } from "@/Pages/DogCategory";
 import { Cat } from "@/Pages/Test1";
 import { Cage } from "@/Pages/CageCategory";
 import { Accessory } from "@/Pages/AccessoryCategory";
-import AccessoryCardItem from "../AccessoryCardItem";
-import CageCardItem from "../CageCardItem";
 import './Slide.css';
+import CACard from "../CACard";
 
 interface Prop {
     items: Dog[]|Cat[]|Cage[]|Accessory[];
@@ -56,12 +55,12 @@ const Slide: React.FC<Prop> = ({items,typeItem}) => {
         </>:<></>}
         {typeItem=='accessory'?<>
           {items.map((item, index) => (
-          <AccessoryCardItem item={item as Accessory}/>
+          <CACard item={item as Accessory} typeItem="phu-kien"/>
         ))}
         </>:<></>}
         {typeItem=='cage'?<>
           {items.map((item, index) => (
-          <CageCardItem item={item as Cage}/>
+          <CACard item={item as Cage} typeItem="long"/>
         ))}
         </>:<></>}
 

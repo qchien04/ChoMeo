@@ -47,7 +47,7 @@ const CardItem: React.FC<ProductCardProps> = ({ item, category }) => {
                   fontWeight: 500,
                 }}
               >
-                {item?.price.toLocaleString("vi-VN")} đ
+                {parseInt(item!.price.toString()).toLocaleString("vi-VN")} VND
               </p>
             </div>
           }

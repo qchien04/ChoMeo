@@ -5,8 +5,9 @@ import "./DetailAccessory.css";
 import { PageProps } from "@/types";
 import { Accessory } from "../AccessoryCategory"; 
 import { router, usePage } from '@inertiajs/react';
+import CACard from "@/Components/CACard";
 
-export default function Cart({ accessory, comments: initialComments }: PageProps<{ accessory: Accessory, comments: any[] }>) {
+export default function Cart({ accessory, comments: initialComments,suggested }: PageProps<{ accessory: Accessory, comments: any[],suggested:Accessory[] }>) {
   const { props } = usePage();
   console.log(accessory);
   const [comments, setComments] = useState(initialComments || []);
@@ -106,22 +107,12 @@ export default function Cart({ accessory, comments: initialComments }: PageProps
           </Row>
         </Card>
 
-        {/* Phần giữa: Gợi ý các phụ kiện khác */}
-        <Card className="accessory-suggest-card">
-          <h3>Các gợi ý phụ kiện khác</h3>
-          <div className="accessory-suggest-list">
-            <div className="suggest-item">
-              <img src="https://scontent.fhan18-1.fna.fbcdn.net/v/t39.30808-1/318092606_822166405526578_8470641239927952714_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=109&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeGHw0CSpWasvd_QCSLd7W65Ba_UBSC6-UYFr9QFILr5RtDHOJyM2vUC5TnOGGgYkbPUJtXJNYCogiBjG7x0ksKX&_nc_ohc=qST6U1cYkW0Q7kNvgE794iC&_nc_oc=Adi2seAMPDq4vr0_iHRBGgvnMJgSNYUWeCn35pDj5GbiWyoh9TJDMfWHFpN1fsdd08o&_nc_zt=24&_nc_ht=scontent.fhan18-1.fna&_nc_gid=AHOYzaKPPUAyyLYi-1bYsKd&oh=00_AYBvwm0S0noT5EJF5hMHw4KNDdkehzIvxtCsQt4XOoqn2Q&oe=67BDB34A" alt="Phụ kiện 1" />
-              <p>Phụ kiện 1</p>
-            </div>
-            <div className="suggest-item">
-              <img src="https://scontent.fhan18-1.fna.fbcdn.net/v/t39.30808-1/318092606_822166405526578_8470641239927952714_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=109&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeGHw0CSpWasvd_QCSLd7W65Ba_UBSC6-UYFr9QFILr5RtDHOJyM2vUC5TnOGGgYkbPUJtXJNYCogiBjG7x0ksKX&_nc_ohc=qST6U1cYkW0Q7kNvgE794iC&_nc_oc=Adi2seAMPDq4vr0_iHRBGgvnMJgSNYUWeCn35pDj5GbiWyoh9TJDMfWHFpN1fsdd08o&_nc_zt=24&_nc_ht=scontent.fhan18-1.fna&_nc_gid=AHOYzaKPPUAyyLYi-1bYsKd&oh=00_AYBvwm0S0noT5EJF5hMHw4KNDdkehzIvxtCsQt4XOoqn2Q&oe=67BDB34A" alt="Phụ kiện 2" />
-              <p>Phụ kiện 2</p>
-            </div>
-            <div className="suggest-item">
-              <img src="https://scontent.fhan18-1.fna.fbcdn.net/v/t39.30808-1/318092606_822166405526578_8470641239927952714_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=109&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeGHw0CSpWasvd_QCSLd7W65Ba_UBSC6-UYFr9QFILr5RtDHOJyM2vUC5TnOGGgYkbPUJtXJNYCogiBjG7x0ksKX&_nc_ohc=qST6U1cYkW0Q7kNvgE794iC&_nc_oc=Adi2seAMPDq4vr0_iHRBGgvnMJgSNYUWeCn35pDj5GbiWyoh9TJDMfWHFpN1fsdd08o&_nc_zt=24&_nc_ht=scontent.fhan18-1.fna&_nc_gid=AHOYzaKPPUAyyLYi-1bYsKd&oh=00_AYBvwm0S0noT5EJF5hMHw4KNDdkehzIvxtCsQt4XOoqn2Q&oe=67BDB34A" alt="Phụ kiện 3" />
-              <p>Phụ kiện 3</p>
-            </div>
+        <Card className="Accessory-suggest-card">
+          <h2>Các gợi ý khác</h2>
+          <div className="Accessory-suggest-list">
+          <CACard typeItem="phu-kien" item={suggested[0]} key={suggested[0].id}></CACard>
+          <CACard typeItem="phu-kien" item={suggested[1]} key={suggested[1].id}></CACard>
+          <CACard typeItem="phu-kien" item={suggested[2]} key={suggested[2].id}></CACard>
           </div>
         </Card>
 

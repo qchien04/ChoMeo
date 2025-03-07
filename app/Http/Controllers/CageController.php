@@ -44,10 +44,16 @@ class CageController extends Controller
     return Inertia::render('CageCategory/index', ['cageList' => $cages]);
     }
     public function showClient(Request $request,Cage $cage){
+        $suggestedCages = Cage::where('id', '!=', $cage->id)
+                            ->inRandomOrder()
+                            ->take(3)
+                            ->get();
         return Inertia::render('DetailCage/index',['cage' => $cage,
-                                                                        'comments' => $cage->comments()->with('user:id,name')->get()
+                                                                        'comments' => $cage->comments()->with('user:id,name')->get(),
+                                                                        'suggested' => $suggestedCages,
                                                                     ]);
     }
+
     public function adminAllView(Request $request)
     {
         $query = Cage::query();

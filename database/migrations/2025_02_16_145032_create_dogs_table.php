@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->enum('gender', ['male', 'female']); // Giới tính
             $table->integer('age'); // Tuổi
             $table->float('weight'); // Cân nặng (kg)
-            $table->float('price'); // Giá bán
+            $table->integer('price'); // Giá bán
             $table->string('color')->nullable(); // Màu lông
             $table->text('description')->nullable(); // Mô tả
             $table->string('image')->nullable(); // Ảnh
