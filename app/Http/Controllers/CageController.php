@@ -11,6 +11,12 @@ class CageController extends Controller
     public function index(Request $request)
     {
         $query = Cage::query();
+        if ($request->filled('keyword')) {
+            $keyword = $request->input('keyword');
+            $query->where('name', 'like', '%' . $keyword . '%')
+            ->orWhere('description', 'like', '%' . $keyword . '%');
+        }
+
         if ($request->has('min-price')) {
             $query->where('price', '>=', $request->input('min-price'));
         }

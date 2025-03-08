@@ -30,27 +30,32 @@ export default function CageDetail({ cage, comments: initialComments,suggested }
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [quantity, setQuantity] = useState<number>(1);
 
-  const handleCommentSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
+  const handleCommentSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!newComment.trim()) {
       message.error("Vui lòng nhập bình luận!");
       return;
     }
     setLoading(true);
-    await router.post(`/cage/${cage.id}/comment`, { content: newComment, rate: newRating }, {
-      onSuccess: () => {
-        setNewComment("");
-        setNewRating(0);
-        setLoading(false);
-        message.success("Bình luận đã được thêm!");
-        
-      },
-      onError: () => {
-        setLoading(false);
-        message.error("Có lỗi xảy ra, vui lòng thử lại!");
-      },
-    });
+  
+    await router.post(
+      `/cage/${cage.id}/comment`,
+      { content: newComment, rate: newRating },
+      {
+        onSuccess: (response: any) => {
+          setNewComment("");
+          setNewRating(0);
+          setLoading(false);
+          message.success("Bình luận đã được thêm!");
+        },
+        onError: () => {
+          setLoading(false);
+          message.error("Có lỗi xảy ra, vui lòng thử lại!");
+        },
+      }
+    );
   };
+  
 
   // Mở Modal khi bấm nút Mua hàng
   const handleBuyClick = () => {
@@ -99,7 +104,7 @@ export default function CageDetail({ cage, comments: initialComments,suggested }
                     {cage.breed}
                   </Descriptions.Item>
                   <Descriptions.Item label="Giá">
-                    <span className="cage-price">{cage.price} VND</span>
+                    <span className="cage-price">{parseInt(cage.price.toString()).toLocaleString("vi-VN")} VND</span>
                   </Descriptions.Item>
                   <Descriptions.Item label="Thông số">
                     {cage.parameter}

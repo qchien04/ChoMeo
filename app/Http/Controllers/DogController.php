@@ -11,22 +11,30 @@ class DogController extends Controller
     public function index(Request $request)
     {
         $query = Dog::query();
-        if ($request->has('min-price')) {
+
+        if ($request->filled('keyword')) {
+            $keyword = $request->input('keyword');
+            $query->where('name', 'like', '%' . $keyword . '%')
+            ->orWhere('description', 'like', '%' . $keyword . '%');
+        }
+
+        if ($request->filled('min-price')) { 
             $query->where('price', '>=', $request->input('min-price'));
         }
-        if ($request->has('max-price')) {
+
+        if ($request->filled('max-price')) {
             $query->where('price', '<=', $request->input('max-price'));
         }
 
-        if ($request->has('breed')) {
+        if ($request->filled('breed') && $request->input('breed') !== '') {
             $query->where('breed', $request->input('breed'));
         }
 
-        if ($request->has('gender')) {
+        if ($request->filled('gender') && $request->input('gender') !== '') {
             $query->where('gender', $request->input('gender'));
         }
 
-        if ($request->has('color')) {
+        if ($request->filled('color') && $request->input('color') !== '') {
             $query->where('color', $request->input('color'));
         }
 
@@ -47,10 +55,18 @@ class DogController extends Controller
             }
         }
 
-    $dogs = $query->get();
-    
-    return Inertia::render('DogCategory/index', ['dogList' => $dogs]);
+        $dogs = $query->get();
+        $breeds = Dog::distinct()->pluck('breed');
+        $colors = Dog::distinct()->pluck('color');
+
+        return Inertia::render('DogCategory/index', [
+            'dogList' => $dogs,
+            'filters' => $request->all(),
+            'breeds' => $breeds,
+            'colors' => $colors,
+        ]);
     }
+
 
 
     public function showClient(Request $request,Dog $dog){

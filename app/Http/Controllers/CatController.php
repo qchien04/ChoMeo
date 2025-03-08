@@ -11,26 +11,34 @@ class CatController extends Controller
     public function index(Request $request)
     {
         $query = Cat::query();
-        if ($request->has('min-price')) {
+
+        if ($request->filled('keyword')) {
+            $keyword = $request->input('keyword');
+            $query->where('name', 'like', '%' . $keyword . '%')
+            ->orWhere('description', 'like', '%' . $keyword . '%');
+        }
+
+        if ($request->filled('min-price')) { 
             $query->where('price', '>=', $request->input('min-price'));
         }
-        if ($request->has('max-price')) {
+
+        if ($request->filled('max-price')) {
             $query->where('price', '<=', $request->input('max-price'));
         }
 
-        if ($request->has('breed')) {
+        if ($request->filled('breed') && $request->input('breed') !== '') {
             $query->where('breed', $request->input('breed'));
         }
 
-        if ($request->has('gender')) {
+        if ($request->filled('gender') && $request->input('gender') !== '') {
             $query->where('gender', $request->input('gender'));
         }
 
-        if ($request->has('color')) {
+        if ($request->filled('color') && $request->input('color') !== '') {
             $query->where('color', $request->input('color'));
         }
 
-        if ($request->has('sort')) {
+        if ($request->filled('sort')) {
             switch ($request->input('sort')) {
                 case 'price-asc':
                     $query->orderBy('price', 'asc');
@@ -47,10 +55,19 @@ class CatController extends Controller
             }
         }
 
-    $cats = $query->get();
-    
-    return Inertia::render('CatCategory/index', ['catList' => $cats]);
+        $cats = $query->get();
+        $breeds = Cat::distinct()->pluck('breed');
+        $colors = Cat::distinct()->pluck('color');
+        
+        return Inertia::render('CatCategory/index', [
+            'catList' => $cats,
+            'filters' => $request->all(),
+            'breeds' => $breeds,
+            'colors' => $colors,
+        ]);
     }
+
+
 
     public function adminAllView(Request $request)
     {

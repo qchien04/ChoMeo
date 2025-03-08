@@ -1,50 +1,68 @@
-
+import { useState } from "react";
 import { PageProps } from "@/types";
 import CardItem from "@/Components/CardItem";
-import { Cat } from "../Test1";
-import { Dog } from "../DogCategory";
-import { Cage } from "../CageCategory";
-import { Accessory } from "../AccessoryCategory";
 import CACard from "@/Components/CACard";
 import HomeLayout from "@/Layouts/HomeLayout";
+import { Pagination } from "antd";
+import "./Search.css"
+type SearchResult = {
+  data: any;
+  type: string;
+  relevance: number;
+};
 
-type SearchResultsProps ={
-  cats:Cat[];
-  dogs: Dog[];
-  cages: Cage[];
-  accessories: Accessory[];
-}
+type SearchProps = {
+  results: SearchResult[];
+  searchKey: string;
+};
 
-export default function Search({ cats, dogs, cages, accessories }: PageProps<SearchResultsProps>) {
-  console.log(cats);
-  console.log(dogs);
-  console.log(cages);
-  console.log(accessories);
+export default function Search({ results, searchKey }: PageProps<SearchProps>) {
+  const itemsPerPage = 8;
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentResults = results.slice(startIndex, startIndex + itemsPerPage);
+
   return (
-    <HomeLayout> 
+    <HomeLayout>
       <div className="search-container">
+        <h2>
+          Kết quả tìm kiếm cho: <span style={{ color: "red" }}>{searchKey}</span>
+        </h2>
 
-      <h3>Mèo</h3>
-      <div className="search-results">
-        {cats.length > 0 ? cats.map((cat) => <CardItem key={cat.id} category="meo" item={cat} />) : <p>Không tìm thấy mèo nào</p>}
-      </div>
+        {currentResults.length > 0 ? (
+          <div className="search-results">
+            {currentResults.map((item, index) => (
+              <div key={index} className="search-item">
+                {item?.data?.id && (
+                  <>
+                    {item.type === "cat" && <CardItem category="meo" item={item.data} />}
+                    {item.type === "dog" && <CardItem category="cho" item={item.data} />}
+                    {item.type === "cage" && <CACard typeItem="long" item={item.data} />}
+                    {item.type === "accessory" && <CACard typeItem="phu-kien" item={item.data} />}
+                  </>
+                )}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p>Không tìm thấy kết quả nào</p>
+        )}
 
-      <h3>Chó</h3>
-      <div className="search-results">
-        {dogs.length > 0 ? dogs.map((dog) => <CardItem key={dog.id} category="cho" item={dog} />) : <p>Không tìm thấy chó nào</p>}
+        {/* Pagination */}
+        {results.length > itemsPerPage && (
+          <Pagination
+            current={currentPage}
+            pageSize={itemsPerPage}
+            total={results.length}
+            onChange={(page) => {
+              setCurrentPage(page);
+              window.scrollTo({ top: 0, behavior: "smooth" }); // Cuộn mượt lên đầu trang
+            }}
+            style={{ marginTop: "20px", textAlign: "center" }}
+          />
+        )}
       </div>
-
-      <h3>Lồng</h3>
-      <div className="search-results">
-        {cages.length > 0 ? cages.map((cage) => <CACard key={cage.id} typeItem="long" item={cage} />) : <p>Không tìm thấy lồng nào</p>}
-      </div>
-
-      <h3>Phụ kiện</h3>
-      <div className="search-results">
-        {accessories.length > 0 ? accessories.map((acc) => <CACard key={acc.id} typeItem="phu-kien3ws" item={acc} />) : <p>Không tìm thấy phụ kiện nào</p>}
-      </div>
-    </div>
     </HomeLayout>
-    
   );
 }

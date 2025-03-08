@@ -18,12 +18,17 @@ export interface Dog {
   image: string;
   sterilized: boolean;
   vaccinated: boolean;
-  is_active?:boolean,
+  is_active?: boolean;
 }
 
-export default function DogCategoryDogCategory({ dogList }: PageProps<{ dogList: Dog[] }>) {
+export default function DogCategory({ dogList, filters, breeds, colors }: PageProps<{ 
+    dogList: Dog[], 
+    filters: any, 
+    breeds: string[], 
+    colors: string[] 
+}>) {
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 8; 
+  const pageSize = 8;
 
   const startIndex = (currentPage - 1) * pageSize;
   const endIndex = startIndex + pageSize;
@@ -35,13 +40,13 @@ export default function DogCategoryDogCategory({ dogList }: PageProps<{ dogList:
   };
 
   return (
-    <CategoryLayout>
+    <CategoryLayout filters={filters} breeds={breeds} colors={colors}>
       <div className="dog-category-arena">
         <Row gutter={[16, 16]}>
           {currentDogs.length > 0 ? (
-            currentDogs.map((dog, index) => (
+            currentDogs.map((dog) => (
               <Col span={6} key={dog.id}>
-                <CardItem key={index} item={dog} category="cho" />
+                <CardItem item={dog} category="cho" />
               </Col>
             ))
           ) : (

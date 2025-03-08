@@ -28,6 +28,7 @@ export default function CageCategoryDogCategory({ cageList }: PageProps<{ cageLi
 
   const onChangePage = (page: number) => {
     setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (

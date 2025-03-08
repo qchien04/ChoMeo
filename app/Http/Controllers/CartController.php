@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
-use App\Models\Dog;
-use App\Models\Cat;
+
 use App\Models\Accessory;
 use App\Models\Cage;
 use Illuminate\Http\Request;
@@ -56,7 +55,7 @@ class CartController extends Controller
                             ->first();
 
         if ($old_data) {
-            error_log(' co trong db -----------------------------------------------------');
+            error_log(message: ' co trong db -----------------------------------------------------');
             $old_data->quantity+=$quantity;
             $old_data->save();
             return back()->with('success', 'Giỏ hàng đã được cập nhật!');
@@ -73,9 +72,15 @@ class CartController extends Controller
         return back()->with('success', 'Giỏ hàng đã được cập nhật!');
     }
 
-    public function destroy(Cart $cart)
+    public function destroy($id)
     {
-        $cart->delete();
-        return redirect()->route('carts.get')->with('success', 'Xóa thành công!');
+        $cart = Cart::where('id', $id)->where('user_id', auth()->id())->first();
+        
+        if ($cart) {
+            $cart->delete();
+            return back()->with('success', 'Xóa thành công!');
+        }
+
+        return back()->with('error', 'Không tìm thấy sản phẩm trong giỏ hàng!');
     }
 }

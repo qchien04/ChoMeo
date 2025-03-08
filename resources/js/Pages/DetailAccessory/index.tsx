@@ -31,8 +31,6 @@ export default function Cart({ accessory, comments: initialComments,suggested }:
         setNewRating(0);
         setLoading(false);
         message.success("Bình luận đã được thêm!");
-        // Reload trang để cập nhật danh sách bình luận mới
-        router.reload();
       },
       onError: () => {
         setLoading(false);
@@ -64,7 +62,6 @@ export default function Cart({ accessory, comments: initialComments,suggested }:
   return (
     <DetailLayout>
       <div className="accessory-detail-container">
-        {/* Phần trên: Hình ảnh bên trái - Thông tin bên phải */}
         <Card className="accessory-top-card">
           <Row gutter={[16, 16]}>
             <Col span={10}>
@@ -83,7 +80,7 @@ export default function Cart({ accessory, comments: initialComments,suggested }:
                     {accessory.breed}
                   </Descriptions.Item>
                   <Descriptions.Item label="Giá">
-                    <span className="accessory-price">{accessory.price} VND</span>
+                    <span className="accessory-price">{parseInt(accessory.price.toString()).toLocaleString("vi-VN")} VND</span>
                   </Descriptions.Item>
                   <Descriptions.Item label="Đánh giá">
                     <Tag color="gold">Điểm: {accessory.evaluate}</Tag>

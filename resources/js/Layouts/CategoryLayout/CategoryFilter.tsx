@@ -1,27 +1,40 @@
-import { Form, InputNumber, Select, Button } from "antd";
-import { useForm } from "@inertiajs/react";
+import { Form, Input, InputNumber, Select, Button } from "antd";
+import { router, useForm } from "@inertiajs/react";
 
 const { Option } = Select;
 
-const CategoryFilter = ({ filters }: { filters: any }) => {
-  const [form] = Form.useForm();
-  const { get, data, setData } = useForm(filters); 
+const CategoryFilter = ({ breeds, colors }: { breeds?: string[], colors?: string[] }) => {
 
+  const searchParams = new URLSearchParams(window.location.search);
+  const initialValues = {
+    keyword: searchParams.get('keyword') || '',
+    'min-price': searchParams.get('min-price') ? Number(searchParams.get('min-price')) : undefined,
+    'max-price': searchParams.get('max-price') ? Number(searchParams.get('max-price')) : undefined,
+    breed: searchParams.get('breed') || '',
+    color: searchParams.get('color') || '',
+    sort: searchParams.get('sort') || '',
+  };
   const handleFilter = (values: any) => {
     const filteredValues = Object.fromEntries(
       Object.entries(values)
-        .filter(([_, value]) => value !== undefined && value !== null)
-        .map(([key, value]) => [key, String(value)]) 
+        .filter(([_, value]) => value !== undefined && value !== null && value !== "")
+        .map(([key, value]) => [key, String(value)])
     ) as Record<string, string>;
-  
+
     const queryString = new URLSearchParams(filteredValues).toString();
-    console.log("Query string:", queryString);
-    get(`${window.location.pathname}?${queryString}`);
+    router.get(`${window.location.pathname}?${queryString}`);
   };
 
   return (
     <div className="category-filter">
-      <Form form={form} layout="vertical" onFinish={handleFilter} initialValues={filters}>
+      <Form
+      layout="vertical" 
+      onFinish={handleFilter} 
+      initialValues={initialValues}>
+        <Form.Item label="Từ khóa" name="keyword">
+          <Input placeholder="Nhập từ khóa tìm kiếm..." allowClear />
+        </Form.Item>
+
         <Form.Item label="Giá tối thiểu" name="min-price">
           <InputNumber min={0} max={10000000} style={{ width: "100%" }} />
         </Form.Item>
@@ -29,6 +42,43 @@ const CategoryFilter = ({ filters }: { filters: any }) => {
         <Form.Item label="Giá tối đa" name="max-price">
           <InputNumber min={0} max={10000000} style={{ width: "100%" }} />
         </Form.Item>
+
+        {breeds&&<Form.Item label="Giống" name="breed">
+          <Select
+            showSearch
+            placeholder="Chọn giống"
+            allowClear
+            optionFilterProp="children"
+            filterOption={(input, option) =>
+              (option?.children as unknown as string)?.toLowerCase().includes(input.toLowerCase())
+            }
+          >
+            <Option value="">Tất cả</Option>
+            {breeds?.map((breed) => (
+              <Option key={breed} value={breed}>{breed}</Option>
+            ))}
+          </Select>
+        </Form.Item>}
+        
+
+
+
+        {colors&&<Form.Item label="Màu sắc" name="color">
+          <Select
+            showSearch
+            placeholder="Chọn màu sắc"
+            allowClear
+            optionFilterProp="children"
+            filterOption={(input, option) =>
+              (option?.children as unknown as string)?.toLowerCase().includes(input.toLowerCase())
+            }
+          >
+            <Option value="">Tất cả</Option> 
+            {colors?.map((color) => (
+              <Option key={color} value={color}>{color}</Option>
+            ))}
+          </Select>
+        </Form.Item>}
 
         <Form.Item label="Sắp xếp" name="sort">
           <Select placeholder="Chọn kiểu sắp xếp">
@@ -41,9 +91,10 @@ const CategoryFilter = ({ filters }: { filters: any }) => {
 
         <Form.Item>
           <Button type="primary" htmlType="submit" block>
-            Áp dụng
+            Tìm kiếm
           </Button>
         </Form.Item>
+
       </Form>
     </div>
   );

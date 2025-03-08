@@ -20,20 +20,18 @@ export interface PropCart {
 export default function Cart({ data }: PageProps<{ data: PropCart[] }>) {
   const [cartItems, setCartItems] = useState<PropCart[]>(data);
 
-  const handleRemoveItem = async(id: number) => {
-    //setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
-    await router.delete(`/gio-hang/delete/${id}`, {
+  const handleRemoveItem = async (id: number) => {
+    router.delete(`/gio-hang/delete/${id}`, {
       onSuccess: () => {
-        (false);
-        message.success("Giỏ hàng đã được cập nhật!");
-        router.reload();
+        message.success("Sản phẩm đã được xóa!");
+        setCartItems(prevItems => prevItems.filter(item => item.id !== id)); // Cập nhật state để xóa ngay lập tức
       },
       onError: () => {
         message.error("Có lỗi xảy ra, vui lòng thử lại!");
       },
     });
-    router.visit('/gio-hang');
   };
+  
   const handleVnpay=()=>{
     router.post(`/vnpay_payment`,{});
     router.visit('/gio-hang');

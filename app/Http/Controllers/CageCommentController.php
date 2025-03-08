@@ -15,24 +15,18 @@ class CageCommentController extends Controller
             'rate'    => 'required|integer|min:1|max:5', 
         ]);
 
-        $oldcomment = CageComment::where('cage_id', $cageId)
-                                      ->where('user_id', auth()->id())
-                                      ->first();
-
-        if ($oldcomment) {
-            $oldcomment->update([
+        $comment = CageComment::updateOrCreate(
+            [
+                'cage_id' => $cageId,
+                'user_id' => auth()->id(),
+            ],
+            [
                 'content' => $request->content,
                 'rate'    => $request->rate,
-            ]);
-        } else {
-            CageComment::create([
-                'cage_id' => $cageId,
-                'user_id'      => auth()->id(),
-                'content'      => $request->content,
-                'rate'         => $request->rate,
-            ]);
-        }
+            ]
+        );
 
+        // Cập nhật điểm trung bình và số lượng đánh giá
         $cage = Cage::find($cageId);
         if ($cage) {
             $averageRate = $cage->comments()->avg('rate') ?: 0;
@@ -42,5 +36,10 @@ class CageCommentController extends Controller
                 'number_of_evaluate'   => $countRate,
             ]);
         }
-    } 
+
+        return redirect()->back()->with([
+            'success' => 'Bình luận thành công!',
+        ]);
+    }
+
 }  

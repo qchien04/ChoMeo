@@ -62,7 +62,7 @@ export default function Detail({ dog,suggested }: PageProps<{ dog: Dog,suggested
                     )}
                   </Descriptions.Item>
                   <Descriptions.Item label="Giá">
-                    <span className="dog-price">{dog.price} VND</span>
+                    <span className="dog-price">{parseInt(dog.price.toString()).toLocaleString("vi-VN")} VND</span>
                   </Descriptions.Item>
                 </Descriptions>
                 <div className="dog-description">

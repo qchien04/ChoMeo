@@ -1,0 +1,16 @@
+.search-container{
+    margin-left: 60px;
+    margin-right: 60px;
+}
+.search-results {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 item mỗi dòng */
+    gap: 16px;
+    padding: 20px 0;
+  }
+  
+  .search-item {
+    display: flex;
+    justify-content: center;
+  }
+  

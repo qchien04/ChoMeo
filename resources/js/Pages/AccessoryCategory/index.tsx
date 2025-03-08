@@ -52,7 +52,7 @@ const AccessoryCategoryDogCategory: React.FC<PageProps> = ({ accessoryList }) =>
                 current={currentPage}
                 pageSize={itemsPerPage}
                 total={accessoryList.length}
-                onChange={(page) => setCurrentPage(page)}
+                onChange={(page) => {setCurrentPage(page);window.scrollTo({ top: 0, behavior: "smooth" })}}
               />
             </div>
           )}

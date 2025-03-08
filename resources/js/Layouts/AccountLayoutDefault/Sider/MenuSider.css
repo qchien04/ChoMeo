@@ -7,6 +7,7 @@
   display: flex;
   flex-direction: column;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  position: fixed;
 }
 
 /* Header của sidebar */

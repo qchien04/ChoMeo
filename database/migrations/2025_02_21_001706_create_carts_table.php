@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('quantity');
             $table->text('type');
             $table->boolean('state');
+            $table->timestamp('payment_date')->nullable(); 
             $table->timestamps();
         });
     }

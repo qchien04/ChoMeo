@@ -24,37 +24,81 @@ class HomeController extends Controller
     }
 
     public function search(Request $request) {
-        $key = $request->input('key'); // Lấy từ khóa tìm kiếm
-
+        $key = $request->input('key');
+    
         if (!$key) {
             return Inertia::render('Search/index', [
-                'cats' => [], 'dogs' => [], 'cages' => [], 'accessories' => [], 'key' => $key
+                'results' => [],
+                'key' => $key
             ]);
         }
-
+    
         $cats = Cat::where('name', 'like', "%{$key}%")
-                ->orWhere('description', 'like', "%{$key}%")
-                ->get();
-
+            ->orWhere('description', 'like', "%{$key}%")
+            ->get()
+            ->map(function ($item) use ($key) {
+                return $this->calculateRelevance($item, $key, 'cat');
+            });
+    
         $dogs = Dog::where('name', 'like', "%{$key}%")
-                ->orWhere('description', 'like', "%{$key}%")
-                ->get();
-
+            ->orWhere('description', 'like', "%{$key}%")
+            ->get()
+            ->map(function ($item) use ($key) {
+                return $this->calculateRelevance($item, $key, 'dog');
+            });
+    
         $cages = Cage::where('name', 'like', "%{$key}%")
-                    ->orWhere('description', 'like', "%{$key}%")
-                    ->get();
-
+            ->orWhere('description', 'like', "%{$key}%")
+            ->get()
+            ->map(function ($item) use ($key) {
+                return $this->calculateRelevance($item, $key, 'cage');
+            });
+    
         $accessories = Accessory::where('name', 'like', "%{$key}%")
-                                ->orWhere('description', 'like', "%{$key}%")
-                                ->get();
-
+            ->orWhere('description', 'like', "%{$key}%")
+            ->get()
+            ->map(function ($item) use ($key) {
+                return $this->calculateRelevance($item, $key, 'accessory');
+            });
+    
+        // Gộp tất cả vào một mảng
+        $results = collect($cats)
+            ->merge($dogs)
+            ->merge($cages)
+            ->merge($accessories);
+    
+        // Sắp xếp theo độ liên quan (cao xuống thấp)
+        $sortedResults = $results->sortByDesc('relevance')->values();
+    
         return Inertia::render('Search/index', [
-            'cats' => $cats,
-            'dogs' => $dogs,
-            'cages' => $cages,
-            'accessories' => $accessories,
-            'key' => $key
+            'results' => $sortedResults,
+            'searchKey' => $key // Đổi tên tránh xung đột với React
         ]);
     }
+    
+    /**
+     * Tính toán độ liên quan của từng item.
+     */
+    private function calculateRelevance($item, $key, $type) {
+        $relevance = 0;
+    
+        // Tăng độ liên quan nếu từ khóa xuất hiện trong tên
+        if (stripos($item->name, $key) !== false) {
+            $relevance += 10;
+        }
+    
+        // Tăng độ liên quan nếu từ khóa xuất hiện trong mô tả
+        if (stripos($item->description, $key) !== false) {
+            $relevance += 5;
+        }
+    
+        return [
+            'data' => $item, // Trả về toàn bộ dữ liệu của item
+            'type' => $type, // Loại sản phẩm (cat, dog, cage, accessory)
+            'relevance' => $relevance
+        ];
+    }
+    
+    
 
 }  

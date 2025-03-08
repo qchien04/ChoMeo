@@ -18,13 +18,17 @@ export interface Cat {
   image: string;
   sterilized: boolean;
   vaccinated: boolean;
-  is_active:boolean;
+  is_active: boolean;
 }
 
-export default function CatCategory({ catList }: PageProps<{ catList: Cat[] }>) {
-
+const CatCategory = ({ catList, filters, breeds, colors }: PageProps<{ 
+  catList: Cat[], 
+  filters: any, 
+  breeds: string[], 
+  colors: string[] 
+}>) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 8; 
+  const pageSize = 8;
 
   const startIndex = (currentPage - 1) * pageSize;
   const endIndex = startIndex + pageSize;
@@ -36,8 +40,8 @@ export default function CatCategory({ catList }: PageProps<{ catList: Cat[] }>) 
   };
 
   return (
-    <CategoryLayout>
-      <div className="dog-category-arena">
+    <CategoryLayout filters={filters} breeds={breeds} colors={colors}>
+      <div className="cat-category-arena">
         <Row gutter={[16, 16]}>
           {currentCats.length > 0 ? (
             currentCats.map((cat) => (
@@ -50,7 +54,7 @@ export default function CatCategory({ catList }: PageProps<{ catList: Cat[] }>) 
           )}
         </Row>
         <div className="pagination-container" style={{ marginTop: "20px", textAlign: "center" }}>
-          <Pagination
+          <Pagination 
             current={currentPage}
             pageSize={pageSize}
             total={catList.length}
@@ -60,4 +64,6 @@ export default function CatCategory({ catList }: PageProps<{ catList: Cat[] }>) 
       </div>
     </CategoryLayout>
   );
-}
+};
+
+export default CatCategory;
